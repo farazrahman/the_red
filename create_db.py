@@ -11,7 +11,7 @@ main_table = """CREATE TABLE IF NOT EXISTS main_table ([patient_id] VARCHAR PRIM
                                                         [gender] VARCHAR NULL,
                                                         [chest_pain_type] VARCHAR NULL, 
                                                         [resting_bp] INTEGER NULL, 
-                                                        [cholestrol] INTEGER NULL, 
+                                                        [cholesterol] INTEGER NULL, 
                                                         [fasting_bs] BOOL NULL, 
                                                         [resting_ecg] VARCHAR NULL, 
                                                         [max_hr] INTEGER NULL,
