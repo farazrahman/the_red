@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import streamlit as st
 import joblib
 
@@ -45,18 +46,26 @@ def predict_hd(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS,
         ST_Slope = 2
 
     # Perform the prediction
-    predict_output = clf_model.predict(
-        pd.DataFrame([[Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG,
+    test_df = pd.DataFrame([[Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG,
                        MaxHR, ExerciseAngina, Oldpeak, ST_Slope]],
                      columns=['Age', 'Sex', 'ChestPainType', 'RestingBP', 'Cholesterol', 'FastingBS', 'RestingECG',
-                              'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope']))
-    print(predict_output)
-    return predict_output
+                              'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope'])
+    predict_output = clf_model.predict(test_df )
+    probability = clf_model.predict_proba(test_df).tolist()
+
+
+    fe = clf_model.feature_importances_.argsort()
+    fig, ax = plt.subplots()
+    ax.barh(test_df.columns[fe], clf_model.feature_importances_[fe])
+    ax.set_xlabel("Feature Importance")
+    ax.set_title('Feature Importance chart')
+
+    return predict_output, probability, fig
 
 
 
 
-st.title('Head Disease Prediction')
+st.title('Heart Disease Prediction')
 
 st.header('Enter the mandatory categorical fields')
 
@@ -76,9 +85,41 @@ Oldpeak = st.number_input('Oldpeak:', min_value=0, max_value=100, value=1)
 
 
 if st.button('Predict Heart Disease'):
-    hd = predict_hd(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG,
+    hd, proba, fig = predict_hd(Age, Sex, ChestPainType, RestingBP, Cholesterol, FastingBS, RestingECG,
                        MaxHR, ExerciseAngina, Oldpeak, ST_Slope)
-    print(hd)
-    st.success(f'Your prediction is {hd[0]}')
+    # print(hd, proba, fig)
+    st.success(f'The overall prediction is {hd[0]}')
+    st.success(f'The patient has around {round(proba[0][1],2)*100} chances of having a heart disease')
+
+    st.header('Legend')
+    col1, col2 = st.columns(2)
+    col1.metric("No heart disease", "0")
+    col2.metric("Yes heart disease", "1")
+
+
+    st.header('Factors affecting the prediction in decreasing order')
+    st.pyplot(fig=fig)
+
+    st.header('For more information check below')
+
+    st.text("Age: age of the patient [years]")
+    st.text("Sex: gender of the patient [M: Male, F: Female]")
+    st.text("ChestPainType: chest pain type [TA: Typical Angina, ATA: Atypical Angina, NAP: Non-Anginal Pain, ASY: Asymptomatic]")
+    st.text("RestingBP: resting blood pressure [mm Hg]")
+    st.text("Cholesterol: serum cholesterol [mm/dl]")
+    st.text("FastingBS: fasting blood sugar [1: if FastingBS > 120 mg/dl, 0: otherwise]")
+    st.text("RestingECG: resting electrocardiogram results [Normal: Normal, ST: having ST-T wave abnormality (T wave inversions "
+                "and/or ST elevation or depression of > 0.05 mV), LVH: showing probable or definite left ventricular "
+                "hypertrophy by Estes' criteria]")
+    st.text("MaxHR: maximum heart rate achieved [Numeric value between 60 and 202]")
+    st.text("ExerciseAngina: exercise-induced angina [Y: Yes, N: No]")
+    st.text("Oldpeak: oldpeak = ST [Numeric value measured in depression]")
+    st.text("ST_Slope: the slope of the peak exercise ST segment [Up: upsloping, Flat: flat, Down: downsloping]")
+
+
+
+
+
+
 
 
