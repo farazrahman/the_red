@@ -8,12 +8,12 @@ Stakeholders:
 - Healthcare professionals- who can get prediction using the application and back up their decision. They can accept or reject the prediction provided by the app if it doesn't align with their domain knowledge. This is where human-in-the-loop behind the AI systems comes into play. 
 - Patients- Can monitor their heart health condition using this application. (This feature is currently in the acklog)
 
-About the Training Data:
-- The training data is taken from Kaggle from the link below:
+- About the Training Data:
+The training data is taken from Kaggle from the link below:
 Fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved from
 https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction
 
--Programming Language and Libraries used:
+- Programming Language and Libraries used:
 1. Python- The code should run using Python versions 3.8
 2. sqlite3 for SQL database Manangement- Python comes with a built-in sqlite database in the form of a library to provide a complete database management system without the need for downloading an additional software. Works best for practising.
 3. pandas for doing transformation tasks on the csv files before loading to db.
@@ -43,7 +43,7 @@ The_RED:
 5. deploy.py
 
 
--Instructions for execution
+- Instructions for execution
 To execute the project follow the steps below: NOTE: Pycharm is used as IDE
 
 1. Clone the repository
