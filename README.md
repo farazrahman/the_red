@@ -1,26 +1,26 @@
 # the_red
 ML based web app for predicting heart diseases
 
-About the Project:
+## About the Project:
 This project is about developing a live demo of a software application that uses Machine Learning to build a prediction system that will help healthcare professionals detect heart disease early for their patients.
 
-Stakeholders:
+## Stakeholders:
 - Healthcare professionals- who can get prediction using the application and back up their decision. They can accept or reject the prediction provided by the app if it doesn't align with their domain knowledge. This is where human-in-the-loop behind the AI systems comes into play. 
 - Patients- Can monitor their heart health condition using this application. (This feature is currently in the acklog)
 
-- About the Training Data:
+## About the Training Data:
 The training data is taken from Kaggle from the link below:
 Fedesoriano. (September 2021). Heart Failure Prediction Dataset. Retrieved from
 https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction
 
-- Programming Language and Libraries used:
+## Programming Language and Libraries used:
   1. Python- The code should run using Python versions 3.8
   2. sqlite3 for SQL database Manangement- Python comes with a built-in sqlite database in the form of a library to provide a complete database management system without the need for downloading an additional software. Works best for practising.
   3. pandas for doing transformation tasks on the csv files before loading to db.
   4. os- python module for interacting with operating system
   5. Streamlit- An open source app framework to deploy the ML model in order to showcase the results for testing
 
-- Project Structure:
+## Project Structure:
 The project has following three elements:
 
 - ETL Pipeline:
@@ -33,7 +33,7 @@ heart-failure-prediction-eda-modeling.ipynb - This is the notebook where ED and 
 - Deployment Pipeline:
 deploy.py- This is where the pickled model is loaded and integrated with streamlit platform in order to prepare the demo for prediction
 
-- File Structure and Description:
+## File Structure and Description:
 The_RED:
 
   1. README.md: read me file containing instructions to run the code 
@@ -43,7 +43,7 @@ The_RED:
   5. deploy.py
 
 
-- Instructions for execution
+## Instructions for execution
 To execute the project follow the steps below: NOTE: Pycharm is used as IDE
 
   1. Clone the repository
@@ -55,10 +55,10 @@ To execute the project follow the steps below: NOTE: Pycharm is used as IDE
   7. To create a db and the required tables run create_db.py in the project's root directory
   8. To populate the db with data run load-data.py in the directory /data_ingestion_ETL/load.py
 
-- To get heart disease prediction using the streamlit application
+## To get heart disease prediction using the streamlit application
 Go to: link
 
-- To provide input features for the ML application, you have to specify the values of following features:
+## To provide input features for the ML application, you have to specify the values of following features:
 
   1. "Age: age of the patient [years]"
   2. "Sex: gender of the patient [M: Male, F: Female]"
@@ -75,4 +75,4 @@ Go to: link
   11. "ST_Slope: the slope of the peak exercise ST segment [Up: upsloping, Flat: flat, Down: downsloping]"
 
 
-- Once you are done with inputing the values, please click on Predict button on the application to get the detailed report.
+## Once you are done with inputing the values, please click on Predict button on the application to get the detailed report.
