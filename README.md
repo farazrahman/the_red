@@ -56,7 +56,7 @@ To execute the project follow the steps below: NOTE: Pycharm is used as IDE
   8. To populate the db with data run load-data.py in the directory /data_ingestion_ETL/load.py
 
 ## To get heart disease prediction using the streamlit application
-Go to: link
+Go to: WIP
 
 ## To provide input features for the ML application, you have to specify the values of following features:
 
